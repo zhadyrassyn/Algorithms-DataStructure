@@ -24,6 +24,9 @@ public final class StdOut {
         pw.println(o.toString());
     }
 
+    public static void print(Object o) {
+        pw.print(o);
+    }
     public static void flush() {
         pw.flush();
     }
