@@ -6,21 +6,37 @@ import util.StdOut;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class FixedCapacityStack<Item> implements Iterable<Item>{
+public class DynamicStack<Item> implements Iterable<Item>{
 
     public Item[] a;
     private int N;
 
-    public FixedCapacityStack(int capacity) {
+    public DynamicStack(int capacity) {
         a = (Item[]) new Object[capacity];
         N = 0;
     }
 
     public boolean isEmpty() { return N == 0; }
     public boolean isFull() { return N == a.length; }
-    public void push(Item item) { a[N++] = item; };
-    public Item pop() { return a[--N]; }
+    public void push(Item item) {
+        if(N == a.length) resize(2*a.length);
+        a[N++] = item;
+    }
+    public Item pop() {
+        Item item  = a[--N];
+        a[N] = null;
+        if(N > 0 && N == a.length/4) resize(a.length/2);
+        return item;
+    }
     public Item peek() { return a[N-1]; }
+
+    private void resize(int max) {
+        Item[] temp = (Item[]) new Object[max];
+        for(int i = 0; i < N; i++) {
+            temp[i] = a[i];
+        }
+        a = temp;
+    }
 
     @Override
     public Iterator<Item> iterator() {
@@ -49,7 +65,7 @@ public class FixedCapacityStack<Item> implements Iterable<Item>{
 
     public static void main(String[] args) {
         int max = Integer.parseInt(args[0]);
-        FixedCapacityStack<String> stack = new FixedCapacityStack<>(max);
+        DynamicStack<String> stack = new DynamicStack<>(max);
         while(StdIn.hasNextToken()) {
             String item = StdIn.next();
             stack.push(item);
