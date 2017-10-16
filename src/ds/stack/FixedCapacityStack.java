@@ -6,28 +6,28 @@ import util.StdOut;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class FixedCapacityStackOfStrings implements Iterable<String>{
+public class FixedCapacityStack<Item> implements Iterable<Item>{
 
-    public String[] a;
+    public Item[] a;
     private int N;
 
-    public FixedCapacityStackOfStrings(int capacity) {
-        a = new String[capacity];
+    public FixedCapacityStack(int capacity) {
+        a = (Item[]) new Object[capacity];
         N = 0;
     }
 
     public boolean isEmpty() { return N == 0; }
     public boolean isFull() { return N == a.length; }
-    public void push(String item) { a[N++] = item; };
-    public String pop() { return a[--N]; }
-    public String peek() { return a[N-1]; }
+    public void push(Item item) { a[N++] = item; };
+    public Item pop() { return a[--N]; }
+    public Item peek() { return a[N-1]; }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<Item> iterator() {
         return new ReverseArrayIterator();
     }
 
-    public class ReverseArrayIterator implements Iterator<String> {
+    public class ReverseArrayIterator implements Iterator<Item> {
 
         private int i = N-1;
 
@@ -37,7 +37,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String>{
         }
 
         @Override
-        public String next() {
+        public Item next() {
             if(!hasNext()) throw new NoSuchElementException();
             return a[i--];
         }
@@ -49,7 +49,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String>{
 
     public static void main(String[] args) {
         int max = Integer.parseInt(args[0]);
-        FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(max);
+        FixedCapacityStack<String> stack = new FixedCapacityStack<>(max);
         while(StdIn.hasNextToken()) {
             String item = StdIn.next();
             stack.push(item);
