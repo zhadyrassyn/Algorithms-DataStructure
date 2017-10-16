@@ -1,5 +1,8 @@
 package ds.queue;
 
+import util.StdIn;
+import util.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -86,5 +89,15 @@ public class Queue<Item> implements Iterable<Item>{
             current = current.next;
             return item;
         }
+    }
+
+    public static void main(String[] args) {
+        Queue<String> queue = new Queue<>();
+        while(StdIn.hasNextToken()) {
+            String nextToken = StdIn.next();
+            queue.enqueue(nextToken);
+            StdOut.print(queue.dequeue() + " ");
+        }
+        StdOut.flush();
     }
 }

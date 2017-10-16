@@ -1,5 +1,8 @@
 package ds.bag;
 
+import util.StdIn;
+import util.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -65,6 +68,15 @@ public class Bag<Item> implements Iterable<Item>{
 
     public static void main(String[] args) {
         Bag<String> bag = new Bag<>();
+        while(StdIn.hasNextToken()) {
+            bag.add(StdIn.next());
+        }
+
+        StdOut.println("Size: " + bag.size());
+        for(String s: bag) {
+            StdOut.println(s);
+        }
+        StdOut.flush();
 
     }
 }

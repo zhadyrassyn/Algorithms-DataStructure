@@ -1,6 +1,8 @@
 package ds.stack;
 
 import ds.queue.Queue;
+import util.StdIn;
+import util.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -83,6 +85,19 @@ public class Stack<Item> implements Iterable<Item> {
             current = current.next;
             return item;
         }
+    }
+
+    public static void main(String[] args) {
+        Stack<String> stack = new Stack<>();
+        while(StdIn.hasNextToken()) {
+            String nextToken = StdIn.next();
+            stack.push(nextToken);
+        }
+
+        while(!stack.isEmpty()) {
+            StdOut.println(stack.pop());
+        }
+        StdOut.flush();
     }
 
 }
