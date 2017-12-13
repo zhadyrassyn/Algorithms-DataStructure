@@ -104,6 +104,21 @@ public class LinkedList<E> extends AbstractList<E> implements Iterable<E>{
         return data;
     }
 
+    //alternative removeMethodImpl
+//    if(position == 0) {
+//        head = head.next;
+//    } else {
+//        Node temp = head;
+//        while(--position > 0) {
+//            temp = temp.next;
+//        }
+//        Node second = temp.next;
+//        Node third = second.next;
+//        temp.next = third;
+//    }
+//
+//    return head;
+
     @Override
     public E set(int position, E data) {
         if(position < 0 || position >= size) throw new IndexOutOfBoundsException();
