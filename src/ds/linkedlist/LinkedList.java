@@ -104,20 +104,37 @@ public class LinkedList<E> extends AbstractList<E> implements Iterable<E>{
         return data;
     }
 
-    //alternative removeMethodImpl
-//    if(position == 0) {
-//        head = head.next;
-//    } else {
-//        Node temp = head;
-//        while(--position > 0) {
-//            temp = temp.next;
-//        }
-//        Node second = temp.next;
-//        Node third = second.next;
-//        temp.next = third;
-//    }
-//
-//    return head;
+    public void reversePrint() {
+        Node temp = head;
+        reversePrint(temp);
+    }
+
+    private void reversePrint(Node head) {
+        if(head == null) return;
+        reversePrint(head.next);
+        System.out.println(head.data);
+    }
+
+    public void reverse() {
+        reverse(head);
+    }
+
+    private void reverse(Node head) {
+        Node prev = null;
+        Node current = head;
+        Node next;
+
+        tail = head;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+
+    }
 
     @Override
     public E set(int position, E data) {
@@ -183,11 +200,8 @@ public class LinkedList<E> extends AbstractList<E> implements Iterable<E>{
         linkedList.addFront(56);
         linkedList.addFront(23);
 
-        linkedList.set(2, 101);
+        linkedList.reversePrint();
 
-        for(int data: linkedList) {
-            System.out.println(data);
-        }
 
     }
 }
