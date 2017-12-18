@@ -46,8 +46,8 @@ public final class StdIn {
         return st.nextToken();
     }
 
-    public static String nextLine() {
-        return next();
+    public static String nextLine() throws IOException {
+        return br.readLine();
     }
 
     public static int nextInt() {

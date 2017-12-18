@@ -24,6 +24,10 @@ public final class StdOut {
         pw.println(o.toString());
     }
 
+    public static void printf(String text, Object... args) {
+        pw.printf(text, args);
+    }
+
     public static void print(Object o) {
         pw.print(o);
     }
