@@ -33,10 +33,17 @@ public class WeightedQuickUnionFind implements UF{
 
     @Override
     public int find(int p) {
-        while (p != id[p]) {
-            p = id[p];
+        int root = p;
+        while(root != id[p]) {
+            root = id[p];
         }
-        return p;
+
+        while(p != root) {
+            int newp = id[p];
+            id[p] = root;
+            p = newp;
+        }
+        return root;
     }
 
     @Override
