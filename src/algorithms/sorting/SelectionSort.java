@@ -1,6 +1,9 @@
-package algorithms;
+package algorithms.sorting;
 
 import util.StdOut;
+
+import static algorithms.sorting.SortingUtils.exch;
+import static algorithms.sorting.SortingUtils.less;
 
 public class SelectionSort {
     public static void sort(Comparable[] arr) {
@@ -16,15 +19,7 @@ public class SelectionSort {
         }
     }
 
-    private static boolean less(Comparable a, Comparable b) {
-        return a.compareTo(b) < 0;
-    }
 
-    private static void exch(int i, int j, Comparable[] arr) {
-        Comparable t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
 
     private static boolean isSorted(Comparable[] arr) {
         for(int i = 1; i < arr.length; i++) {
